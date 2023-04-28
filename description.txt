@@ -1,0 +1,41 @@
+Containers are based on isolation
+We create a container by spanning a new process and running comnands on the new process.
+Namespace restrics what a process can see. This is enabled by syscalls which tell the kernel what to offer to the particular process
+There are six different low level functionalities that need to be isolated to be used by the container independently. These include:
+Process ID - Allows a container to have its own process id naming system which is independent from the host. The container process are only visible in the container.
+           - Involves mountin
+Unix TimeSharing System (Hostname)
+Mount - Allows Your mounts(filesystem) to be visible only to the container and the root of the host system
+      - Involves:
+      1.Creating a new namespace 
+      2. Cloning the host's rootfilesystem separate from the host's filesystem
+      3.Mounting the new filesytem  as the root of the new mount namespace 
+UserID - allows a container to have its own view of users. Does not have to be root
+//to do
+Network - allows your container to have its own view of networking spaces
+InterProcessCommunication - isolationof ipcs for them to happen within a container
+
+
+//to do /proc - a pseudo file system
+Pseudo-' means false, pretend. So "pseudo-filesystem" means a filesystem that doesn't have actual files – rather, it has virtual entries that the filesystem itself makes up on the spot.
+ proc on many OSes is a procfs which dynamically generates directories for every process. Similarly, /sys on Linux generates files and directories to represent hardware layouts. There are FUSE-based pseudo-filesystems for a lot of things.
+
+ containers are processes that run in an isolated environment but are visible from the host.
+
+ CGROUPS
+ It is a kernel feature that allows an administrator to allocate resources such as:
+      CPU
+      Memory
+      I/O bandwidth
+
+Cgroups provide a way to control how much of the system’s resources a process or a group of processes can use. 
+For example, an administrator could create a cgroup for a group of processes associated with a specific application (e.g., a web application running on a server) and then set limits on the amount of CPU and memory that those processes are allowed to use.
+
+ cgroups allow us to limit the resources each container can consume so that our application cannot take over the whole server or ensure it has the resources it needs to function properly.
+
+ They tell us what reources the process can use.
+ Processes are assigned different cgroups.
+ Cgroups are created as a directory containing a pseudo file system
+
+ 
+ Virtualization relies on software to simulate hardware functionality and create a virtual computer system.
